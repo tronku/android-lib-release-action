@@ -33,7 +33,7 @@ else
 
   echo "commit message $commit_message"
   git config user.name ${GITHUB_ACTOR}
-  git config user.email ${GITHUB_ACTOR}@gmail.com
+  git config user.email ${GITHUB_ACTOR}@zomato.com
 
   git tag -a v$version_name -m ""
   git push origin --tags

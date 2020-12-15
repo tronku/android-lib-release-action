@@ -2,7 +2,7 @@
 source_branch=$1
 destination_branch=$2
 git config user.name ${GITHUB_ACTOR}
-git config user.email ${GITHUB_ACTOR}@gmail.com
+git config user.email ${GITHUB_ACTOR}@zomato.com
 git fetch
 git checkout origin/$source_branch -f
 git checkout $source_branch -f

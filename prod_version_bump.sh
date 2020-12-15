@@ -5,7 +5,7 @@ VERSION_CODE_VAR="VERSION_CODE"
 VERSION_NAME_VAR="VERSION_NAME"
 
 git config user.name ${GITHUB_ACTOR}
-git config user.email ${GITHUB_ACTOR}@gmail.com        
+git config user.email ${GITHUB_ACTOR}@zomato.com        
 
 # get the tag of last release
 git fetch
