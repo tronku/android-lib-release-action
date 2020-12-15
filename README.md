@@ -34,21 +34,21 @@ inputs:
 ```yaml
 uses: Zomato/android-lib-release-action@master
 with:
-	github_token: ${{ secrets.GITHUB_TOKEN }}
-	default_branch: development
-	main_branch: master
-	version_file_path: version.properties
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  default_branch: development
+  main_branch: master
+  version_file_path: version.properties
 ```
 
 - To publish the package, `release_tag` should be set to `true`
 ```yaml
 uses: Zomato/android-lib-release-action@master
 with:
-	github_token: ${{ secrets.GITHUB_TOKEN }}
-	default_branch: development
-	main_branch: master
-	version_file_path: version.properties
-	release_tag: true
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  default_branch: development
+  main_branch: master
+  version_file_path: version.properties
+  release_tag: true
 ```
 
 ### Requestor
