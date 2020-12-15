@@ -1,5 +1,5 @@
-name: 'Version PR Bump'
-description: 'Use to bump a version of the repo'
+name: 'Library Release Action'
+description: 'It is used to bump current library's version and publish a new package and release tag.'
 author: 'tronku'
 branding:
   icon: 'box'
@@ -7,7 +7,7 @@ branding:
 
 inputs:
   github_token:
-    description: 'Github token to access your repo'
+    description: 'GitHub token to access your repo'
     required: true
 
   default_branch:
