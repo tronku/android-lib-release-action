@@ -20,14 +20,36 @@ inputs:
     required: false
     default: 'master'
 
-  version_file_path:
-    description: 'Path of version.properties file'
-    required: true
-
   should_sync:
     description: 'Should sync default and main branch (for release only)'
-    required: true
-    default: 'false'  
+    required: false
+    default: 'false'
+
+  auto_delete:
+    description: 'Should delete old packages'
+    required: false
+    default: 'false'
+    
+  delete_version_count: 
+    description: 'Number of versions to be deleted'
+    required: false
+    default: '10'
+
+  packages_count:
+    description: 'Number of packages in the repo'
+    required: false
+    default: '1'  
+    
+  package_file_path:
+    description: 'Path of package.properties file'
+    required: false
+    default: 'package.properties'  
+
+  version_file_path:
+    description: 'Path of version.properties file'
+    required: false
+    default: 'version.properties'
+  
 
 runs:
   using: 'docker'
@@ -38,3 +60,7 @@ runs:
     - ${{ inputs.main_branch }}    
     - ${{ inputs.version_file_path }}
     - ${{ inputs.should_sync }}
+    - ${{ inputs.auto_delete }}
+    - ${{ inputs.delete_version_count }}
+    - ${{ inputs.packages_count }}
+    - ${{ inputs.package_file_path }}

@@ -6,8 +6,29 @@ default_branch=$2
 base_branch=$3
 version_file_path=$4
 should_sync=$5
+auto_delete=$6
+delete_version_count=$7
+packages_count=$8
+package_file_path=$9
 
-if [ "$should_sync" = false ] ; then
+if [ "$auto_delete" = true ] ; then
+  source $version_file_path
+  current_version=${VERSION_NAME//./}
+  source $package_file_path
+  last_version=$LAST_DELETED_VERSION
+
+  versions_count=$(expr "$current_version" - "$last_version")
+  echo "Current version - $current_version"
+  echo "Last deleted version - $last_version"
+  echo "Versions count - $versions_count"
+
+  if [ $versions_count <= $delete_version_count ] ; then
+    echo "Not enough versions to delete."
+  else
+    echo "Old versions can be deleted."
+    python3 /delete_old_packages.py "$GITHUB_TOKEN" "$GITHUB_REPOSITORY" $packages_count $delete_version_count "$package_file_path" $default_branch
+  fi
+elif [ "$should_sync" = false ] ; then
   # version bump
   chmod +x /prod_version_bump.sh
   /prod_version_bump.sh $version_file_path $default_branch
