@@ -9,7 +9,9 @@ git config user.email ${GITHUB_ACTOR}@zomato.com
 
 # get the tag of last release
 git fetch
-git_latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+git checkout $DEFAULT_BRANCH
+source $VERSION_PROPERTIES_PATH
+git_latest_tag="$VERSION_NAME"
 
 echo "Latest tag: $git_latest_tag"
 
@@ -37,7 +39,6 @@ echo "VERSION_CODE: $VERSION_CODE_VALUE"
 echo "VERSION_NAME: $VERSION_NAME_VALUE"
 
 #create the smoke testing branch with new version string
-git checkout $DEFAULT_BRANCH
 git checkout -b $COMMIT_BRANCH/$git_upcoming_tag
 git reset --hard origin/$DEFAULT_BRANCH
 
