@@ -50,6 +50,10 @@ inputs:
     required: false
     default: 'version.properties'
   
+  release_branch_prefix:
+    description: 'Prefix of the version bump release branch'
+    required: false
+    default: ''
 
 runs:
   using: 'docker'
@@ -64,3 +68,4 @@ runs:
     - ${{ inputs.delete_version_count }}
     - ${{ inputs.packages_count }}
     - ${{ inputs.package_file_path }}
+    - ${{ inputs.release_branch_prefix }}

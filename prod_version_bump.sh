@@ -1,6 +1,8 @@
 VERSION_PROPERTIES_PATH=$1
 DEFAULT_BRANCH=$2
-COMMIT_BRANCH="release"
+release_branch_prefix=$3
+
+COMMIT_BRANCH="${release_branch_prefix}release"
 VERSION_CODE_VAR="VERSION_CODE"
 VERSION_NAME_VAR="VERSION_NAME"
 
@@ -39,7 +41,7 @@ echo "VERSION_CODE: $VERSION_CODE_VALUE"
 echo "VERSION_NAME: $VERSION_NAME_VALUE"
 
 #create the smoke testing branch with new version string
-git checkout -b $COMMIT_BRANCH/$git_upcoming_tag
+git checkout -b $COMMIT_BRANCH/v$git_upcoming_tag
 git reset --hard origin/$DEFAULT_BRANCH
 
 # Update version.properties
@@ -58,6 +60,6 @@ git add $VERSION_PROPERTIES_PATH
 git commit -m "Going live | $VERSION_NAME_VALUE"
 
 # Commit and push
-git push origin $COMMIT_BRANCH/$git_upcoming_tag --force
+git push origin $COMMIT_BRANCH/v$git_upcoming_tag --force
 
 echo $git_upcoming_tag
