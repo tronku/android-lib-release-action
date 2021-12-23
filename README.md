@@ -48,12 +48,17 @@ inputs:
     description: 'Path of version.properties file'
     required: false
     default: 'version.properties' 
+
+  release_branch_prefix:
+    description: 'Prefix of the version bump release branch'
+    required: false
+    default: ''
 ```
 
 ## How to use
 - To bump the version, `should_sync` is not required.
 ```yaml
-uses: Zomato/android-lib-release-action@v3
+uses: Zomato/android-lib-release-action@v4
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development
@@ -63,7 +68,7 @@ with:
 
 - To sync default and main branch, `should_sync` should be set to `true`.
 ```yaml
-uses: Zomato/android-lib-release-action@v3
+uses: Zomato/android-lib-release-action@v4
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development
@@ -74,7 +79,7 @@ with:
 
 - To enable package deletion, `auto_delete` should be set to `true`.
 ```yaml
-uses: Zomato/android-lib-release-action@v3
+uses: Zomato/android-lib-release-action@v4
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development
