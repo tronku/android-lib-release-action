@@ -11,6 +11,7 @@ delete_version_count=$7
 packages_count=$8
 package_file_path=$9
 release_branch_prefix=${10}
+create_sync_pr=${11}
 
 if [ "$auto_delete" = true ] ; then
   source $version_file_path
@@ -49,7 +50,20 @@ elif [ "$should_sync" = false ] ; then
   chmod +x /createpr.sh
   /createpr.sh "$GITHUB_TOKEN" "$release_version" "$base_branch" "$pr_allow_empty" "$pr_title" "$pr_body"
 else
-  # Syncing default and base branches
-  chmod +x /merge.sh
-  /merge.sh $default_branch $base_branch
+  if [ "$create_sync_pr" = true ]; then
+    version_name=$(/get-app-version.sh $version_file_path)
+    # get changelogs
+    pr_allow_empty="true"
+    pr_title="Branch syncup | $version_name"
+    pr_body=$(/get-changelog.sh $default_branch $base_branch)
+
+    # create a PR
+    echo "pr body: $pr_body"
+    chmod +x /createpr.sh
+    /createpr.sh "$GITHUB_TOKEN" "$default_branch" "$base_branch" "$pr_allow_empty" "$pr_title" "$pr_body"
+  else
+    # Syncing default and base branches
+    chmod +x /merge.sh
+    /merge.sh $default_branch $base_branch
+  fi
 fi

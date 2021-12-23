@@ -24,6 +24,11 @@ inputs:
     required: false
     default: 'false'
 
+  create_sync_pr:
+    description: 'Create sync PR from main to default branch'
+    required: false
+    default: 'false'
+
   auto_delete:
     description: 'Should delete old packages'
     required: false
@@ -58,7 +63,7 @@ inputs:
 ## How to use
 - To bump the version, `should_sync` is not required.
 ```yaml
-uses: Zomato/android-lib-release-action@v4
+uses: Zomato/android-lib-release-action@v5
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development
@@ -68,7 +73,7 @@ with:
 
 - To sync default and main branch, `should_sync` should be set to `true`.
 ```yaml
-uses: Zomato/android-lib-release-action@v4
+uses: Zomato/android-lib-release-action@v5
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development
@@ -77,9 +82,20 @@ with:
   should_sync: true
 ```
 
+- To create a sync PR from main to default branch, `create_sync_pr` should be set to `true`. In case when `create_sync_pr` and `should_sync` both are `true`, preference will be given to `create_sync_pr`.
+```yaml
+uses: Zomato/android-lib-release-action@v5
+with:
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  default_branch: development
+  main_branch: master
+  version_file_path: version.properties
+  create_sync_pr: true
+```
+
 - To enable package deletion, `auto_delete` should be set to `true`.
 ```yaml
-uses: Zomato/android-lib-release-action@v4
+uses: Zomato/android-lib-release-action@v5
 with:
   github_token: ${{ secrets.GITHUB_TOKEN }}
   default_branch: development

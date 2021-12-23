@@ -25,6 +25,11 @@ inputs:
     required: false
     default: 'false'
 
+  create_sync_pr:
+    description: 'Create sync PR from main to default branch'
+    required: false
+    default: 'false'  
+
   auto_delete:
     description: 'Should delete old packages'
     required: false
@@ -69,3 +74,4 @@ runs:
     - ${{ inputs.packages_count }}
     - ${{ inputs.package_file_path }}
     - ${{ inputs.release_branch_prefix }}
+    - ${{ inputs.create_sync_pr }}
