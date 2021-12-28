@@ -60,7 +60,7 @@ else
     # create a PR
     echo "pr body: $pr_body"
     chmod +x /createpr.sh
-    /createpr.sh "$GITHUB_TOKEN" "$default_branch" "$base_branch" "$pr_allow_empty" "$pr_title" "$pr_body"
+    /createpr.sh "$GITHUB_TOKEN" "$base_branch" "$default_branch" "$pr_allow_empty" "$pr_title" "$pr_body"
   else
     # Syncing default and base branches
     chmod +x /merge.sh
