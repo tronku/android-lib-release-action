@@ -30,7 +30,7 @@ if [ "$auto_delete" = true ] ; then
     echo "Old versions can be deleted."
     python3 /delete_old_packages.py "$GITHUB_TOKEN" "$GITHUB_REPOSITORY" $packages_count $delete_version_count "$package_file_path" $default_branch
   fi
-elif [ "$should_sync" = false ] ; then
+elif [ "$should_sync" = false && "$create_sync_pr" = false ] ; then
   # version bump
   chmod +x /prod_version_bump.sh
   /prod_version_bump.sh $version_file_path $default_branch $release_branch_prefix
