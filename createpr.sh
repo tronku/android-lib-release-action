@@ -31,6 +31,7 @@ echo "Destination branch $DESTINATION_BRANCH"
 # Github actions no longer auto set the username and GITHUB_TOKEN
 git config user.name ${GITHUB_ACTOR}
 git config user.email ${GITHUB_ACTOR}@zomato.com
+git config pull.rebase true
 
 echo "repo link $GITHUB_REPOSITORY"
 echo "actor $GITHUB_ACTOR"
