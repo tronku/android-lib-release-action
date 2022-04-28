@@ -3,6 +3,8 @@ DEFAULT_BRANCH=$2
 release_branch_prefix=$3
 base_version_code=$4
 
+echo "$release_branch_prefix  $base_version_code"
+
 COMMIT_BRANCH="${release_branch_prefix}release"
 VERSION_CODE_VAR="VERSION_CODE"
 VERSION_NAME_VAR="VERSION_NAME"
@@ -33,7 +35,7 @@ VERSION_NAME_VALUE=${git_upcoming_tag#"v"}
 
 # Get version code from VERSION_NAME
 version_code_addition="${VERSION_NAME_VALUE//./}"
-VERSION_CODE_VALUE=`expr $base_version_code + $version_code_addition \* 10`
+VERSION_CODE_VALUE=$(expr $base_version_code + $version_code_addition \* 10)
 
 # Print version properties
 echo "Printing version.properties"
