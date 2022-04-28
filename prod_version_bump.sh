@@ -1,6 +1,7 @@
 VERSION_PROPERTIES_PATH=$1
 DEFAULT_BRANCH=$2
 release_branch_prefix=$3
+base_version_code=$4
 
 COMMIT_BRANCH="${release_branch_prefix}release"
 VERSION_CODE_VAR="VERSION_CODE"
@@ -31,7 +32,6 @@ echo "Upcoming tag: $git_upcoming_tag"
 VERSION_NAME_VALUE=${git_upcoming_tag#"v"}
 
 # Get version code from VERSION_NAME
-base_version_code='1710000000'
 version_code_addition="${VERSION_NAME_VALUE//./}"
 VERSION_CODE_VALUE=`expr $base_version_code + $version_code_addition \* 10`
 

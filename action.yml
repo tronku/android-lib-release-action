@@ -60,6 +60,11 @@ inputs:
     required: false
     default: ''
 
+  base_version_code:
+    description: 'Default base version code to be added'
+    required: false
+    default: '1710000000'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -75,3 +80,4 @@ runs:
     - ${{ inputs.package_file_path }}
     - ${{ inputs.release_branch_prefix }}
     - ${{ inputs.create_sync_pr }}
+    - ${{ inputs.base_version_code }}

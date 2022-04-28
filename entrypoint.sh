@@ -12,6 +12,7 @@ packages_count=$8
 package_file_path=$9
 release_branch_prefix=${10}
 create_sync_pr=${11}
+base_version_code=${12}
 
 if [ "$auto_delete" = true ] ; then
   source $version_file_path
@@ -33,7 +34,7 @@ if [ "$auto_delete" = true ] ; then
 elif [ "$should_sync" = false && "$create_sync_pr" = false ] ; then
   # version bump
   chmod +x /prod_version_bump.sh
-  /prod_version_bump.sh $version_file_path $default_branch $release_branch_prefix
+  /prod_version_bump.sh $version_file_path $default_branch $release_branch_prefix $base_version_code
 
   # release version
   version_name=$(/get-app-version.sh $version_file_path)
