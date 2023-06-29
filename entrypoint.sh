@@ -13,6 +13,7 @@ package_file_path=$9
 release_branch_prefix=${10}
 create_sync_pr=${11}
 base_version_code=${12}
+custom_changelogs=${13}
 
 if [ "$auto_delete" = true ] ; then
   source $version_file_path
@@ -56,7 +57,11 @@ else
     # get changelogs
     pr_allow_empty="true"
     pr_title="Branch syncup | $version_name"
-    pr_body=$(/get-changelog.sh $default_branch $base_branch)
+    if [ ${#custom_changelogs} == 0 ]; then
+      pr_body=$(/get-changelog.sh $default_branch $base_branch)
+    else
+      pr_body=$custom_changelogs
+    fi
 
     # create a PR
     echo "pr body: $pr_body"

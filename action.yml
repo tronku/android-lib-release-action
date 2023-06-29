@@ -65,6 +65,11 @@ inputs:
     required: false
     default: '1710000000'
 
+  custom_changelogs:
+    description: Custom changelogs for the bump PR
+    required: false
+    default: ''
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -81,3 +86,4 @@ runs:
     - ${{ inputs.release_branch_prefix }}
     - ${{ inputs.create_sync_pr }}
     - ${{ inputs.base_version_code }}
+    - ${{ inputs.custom_changelogs }}
